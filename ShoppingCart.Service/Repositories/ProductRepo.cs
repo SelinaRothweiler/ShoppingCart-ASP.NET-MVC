@@ -13,7 +13,7 @@ namespace ShoppingCart.Service.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public ProductRepo(ApplicationDbContext context) => _context = context;
+        ProductRepo(ApplicationDbContext context) => _context = context;
 
         public int Id { get; private set; }
 

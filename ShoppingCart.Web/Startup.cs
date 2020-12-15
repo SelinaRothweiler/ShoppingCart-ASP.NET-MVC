@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShoppingCart.Service.Infrastructure;
 using ShoppingCart.Service.Repositories;
+using ShoppingCart.Web.Helper;
 
 namespace ShoppingCart.Web
 {
@@ -28,6 +29,12 @@ namespace ShoppingCart.Web
             services.AddControllersWithViews();
             services.AddTransient<ICategory, CategoryRepo>();
             services.AddTransient<IProduct, ProductRepo>();
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutomapperProfile());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
