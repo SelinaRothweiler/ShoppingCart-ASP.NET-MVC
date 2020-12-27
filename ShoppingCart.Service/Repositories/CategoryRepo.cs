@@ -16,8 +16,6 @@ namespace ShoppingCart.Service.Repositories
 
         public int Id { get; private set; }
 
-        //public CategoryRepo(ApplicationDbContext context) => _context = context;
-
         public void DeleteCategory(Category category)
         {
             _context.Categories.Remove(category);

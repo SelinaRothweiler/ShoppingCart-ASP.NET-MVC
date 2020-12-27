@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShoppingCart.Web.Views.Categories
+namespace ShoppingCart.Web.ViewModels.CategoryViewModels
 {
-    public class EditCategoryViewModel
+    public class CreateCategoryViewModel
     {
-
     }
 }

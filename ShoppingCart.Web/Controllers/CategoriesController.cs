@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.DataAccess.Model;
 using ShoppingCart.Service.Infrastructure;
-using ShoppingCart.Web.ViewModels;
+using ShoppingCart.Web.ViewModels.CategoryViewModels;
 
 namespace ShoppingCart.Web.Controllers
 {
@@ -36,19 +37,42 @@ namespace ShoppingCart.Web.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
+            var category = _category.GetCategoryById(id);
+            var mappedCategory = _mapper.Map<EditCategoryViewModel>(category);
             return View();
         }
         [HttpGet]
-        public IActionResult Details()
+        public IActionResult Details( int id)
         {
-            return View();
+            var category = _category.GetCategoryById(id);
+            var mappedCategory = _mapper.Map<DetailCategoryViewModel>(category);
+            return View(mappedCategory);
         }
         [HttpGet]
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            return View();
+            var category = _category.GetCategoryById(id);
+            var mappedCategory = _mapper.Map<DeleteCategoryViewModel>(category);
+            return View(mappedCategory);
         }
+        [HttpPost]
+        public IActionResult Delete(DeleteCategoryViewModel vm)
+        {
+            var mappedCategoryInModel = _mapper.Map<Category>(vm);
+            _category.DeleteCategory(mappedCategoryInModel);
+            _category.Save();
+                return RedirectToAction("Index", "Categories");
+        }
+        [HttpPost]
+        public IActionResult Edit(EditCategoryViewModel vm)
+        {
+            var mappedCategoryInModel = _mapper.Map<Category>(vm);
+            _category.UpdateCategory(mappedCategoryInModel);
+            _category.Save();
+            return RedirectToAction("Index", "Categories");
+        }
+
     }
 }
