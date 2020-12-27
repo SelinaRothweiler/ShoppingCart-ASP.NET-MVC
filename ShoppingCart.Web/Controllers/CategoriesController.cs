@@ -73,6 +73,14 @@ namespace ShoppingCart.Web.Controllers
             _category.Save();
             return RedirectToAction("Index", "Categories");
         }
+        [HttpPost]
+        public IActionResult Create(CreateCategoryViewModel vm)
+        {
+            var mappedCategoryInModel = _mapper.Map<Category>(vm);
+            _category.InsertCategory(mappedCategoryInModel);
+            _category.Save();
+            return RedirectToAction("Index", "Categories");
+        }
 
     }
 }

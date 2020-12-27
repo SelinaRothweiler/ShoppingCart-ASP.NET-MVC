@@ -16,6 +16,7 @@ namespace ShoppingCart.Web.Helper
             CreateMap<Category, EditCategoryViewModel>().ReverseMap();
             CreateMap<Category, DetailCategoryViewModel>();
             CreateMap<Category, DeleteCategoryViewModel>().ReverseMap();
+            CreateMap<CreateCategoryViewModel, Category>();
         }
     }
 }
