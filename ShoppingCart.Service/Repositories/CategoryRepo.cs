@@ -27,7 +27,7 @@ namespace ShoppingCart.Service.Repositories
             return _context.Categories.ToList();
         }
 
-        public Category GetCategoryById()
+        public Category GetCategoryById(int id)
         {
             return _context.Categories.Where(x => x.Id == Id).FirstOrDefault();
         }
